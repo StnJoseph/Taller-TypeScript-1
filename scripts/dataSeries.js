@@ -1,6 +1,6 @@
 import { Serie } from "./serie.js";
 //======================== Datos ========================//
-var series = [
+export var dataSeries = [
     new Serie(1, "Breaking Bad", "AMC", 5, "Set and filmed in Albuquerque, New Mexico, the series tells the story of Walter White, a struggling and depressed high school chemistry teacher who is diagnosed with lung cancer", "https://www.amc.com/shows/breaking-bad", "https://i.imgur.com/GGje0vc.jpg"),
     new Serie(2, "Orange Is the New Black", "Netflix", 6, "The series begins revolving around Piper Chapman, a woman in her thirties living in New York City who is sentenced to 15 months in Litchfield Penitentiary", "https://www.netflix.com/co/title/70242311", "https://i.imgur.com/EvKe48G.jpg"),
     new Serie(3, "Game of Thrones", "HBO", 7, "American fantasy drama", "https://www.hbo.com/game-of-thrones", "https://i.imgur.com/TDCEV1S.jpg"),
@@ -8,39 +8,3 @@ var series = [
     new Serie(5, "Sherlock", "BBC", 4, "Sherlock depicts consulting detective Sherlock Holmes (Benedict Cumberbatch) solving various mysteries in modern-day London. Holmes is assisted by his flatmate and friend, Dr John Watson (Martin Freeman), who has returned from military service in Afghanistan with the Royal Army Medical Corps", "https://www.bbc.co.uk/programmes/b018ttws", "https://i.imgur.com/02B7qhj.jpg"),
     new Serie(6, "A Very English Scandal", "BBC", 2, "A Very English Scandal is a fact-based three-part British television comedy-drama miniseries based on John Preston's book of the same name.", "https://www.bbc.co.uk/programmes/p065smy4", "https://i.imgur.com/D4y3DrQ.jpg"),
 ];
-//======================== Variables conectadas a HTML ========================//
-var seriesTable = document.getElementById("series");
-var promTable = document.getElementById("promedio");
-var detalleTable = document.getElementById("detalle");
-//======================== Invocar Funciones ========================//
-mostrarSeries(series);
-mostrarPromedioTemporadas(series);
-//======================== Funciones ========================//
-function mostrarSeries(series) {
-    var seriesTbody = document.getElementById("series"); // Usa el tbody existente en el HTML
-    for (var _i = 0, series_1 = series; _i < series_1.length; _i++) {
-        var serie = series_1[_i];
-        var trElement = document.createElement("tr");
-        trElement.innerHTML = "<td>".concat(serie.numero, "</td>\n                               <td>").concat(serie.nombre, "</td>\n                               <td>").concat(serie.plataforma, "</td>\n                               <td>").concat(serie.temporadas, "</td>");
-        seriesTbody.appendChild(trElement);
-    }
-}
-function mostrarPromedioTemporadas(series) {
-    var trElement = document.createElement("tr");
-    var promedioTemporadas = calcularPromedioTemporadas(series);
-    trElement.innerHTML = "<td><b>Seasons average: </b></td><td>".concat(promedioTemporadas, "</td>");
-    promTable.appendChild(trElement);
-}
-function calcularPromedioTemporadas(series) {
-    var sumTemporadas = 0;
-    for (var index = 0; index < series.length; index++) {
-        var serie = series[index];
-        sumTemporadas += serie.temporadas;
-    }
-    return sumTemporadas / series.length;
-}
-function mostrarDatosSerie(serie) {
-    var tbodySerie = document.createElement("tbody");
-    tbodySerie.innerHTML = "<tr><td colspan=1><img src =\"".concat(serie.imagen, "\" height=\"100\"</td></tr>\n                            <tr><td>").concat(serie.nombre, "</td></tr>\n                            <tr><td>").concat(serie.info, "</td></tr>\n                            <tr><td>").concat(serie.link, "</td></tr>");
-    detalleTable.appendChild(tbodySerie);
-}
